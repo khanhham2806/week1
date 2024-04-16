@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <aside class="left-part">
+      <div class="logo">
+        <i class="fa-solid fa-bars-progress"></i>
+        <span>Device Management</span>
+      </div>
+      <div class="menu-list">
+        <ul className="menu">
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-bars-progress"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-arrow-rotate-left"></i>
+              Logs
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-gear"></i>
+              Settings
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="right-part">
+      <div class="header">
+        <div class="user">
+          <i class="fa-solid fa-circle-user"></i>
+          <span>Welcome Khánh</span>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="search-head">
+          <h3>Action Logs</h3>
+          <div class="form-search">
+            <form id="search-device">
+              <input type="text" placeholder="Name" class="input-field" id="name-search" name="name" />
+              <button type="submit" class="btn">Search</button>
+            </form>
+          </div>
+        </div>
+        <div class="table">
+          <table id="table-device">
+            <thead>
+              <tr>
+                <td>Devices</td>
+                <td>Type</td>
+                <td>MAC Address</td>
+                <td>Created Date</td>
+                <td>Power Consumption (Kw/H)</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+        <div class="paginate" id="paginate"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/logs.js"></script>
+</body>
+
+</html>

@@ -51,8 +51,8 @@
 
         <div class="header">
           <div class="mobile">
-            <div id="btn-humberger" class="btn-humberger">
-              <i class="fa-solid fa-bars"></i>
+            <div class="btn-hamburger">
+              &#9776;
             </div>
             <div class="mobile-menu" id="mobile-menu">
               <div class="menu-list">
@@ -102,6 +102,7 @@
                   <td>IP</td>
                   <td>Created Date</td>
                   <td>Power Consumption (Kw/H)</td>
+                  <td>Actions</td>
                 </tr>
               </thead>
               <tbody>
@@ -115,11 +116,21 @@
 
             <div class="form-add">
               <form id="add-device">
-                <input type="text" placeholder="Name" class="input-field" id="name" name="name" />
-                <input type="number" placeholder="Consumption" class="input-field" id="consumption"
-                  name="consumption" />
-
+                <input type="text" placeholder="Name" class="input-field" id="name" />
+                <input type="text" placeholder="Mac Address" class="input-field" id="mac-address" />
+                <input type="text" placeholder="IP Address" class="input-field" id="ip-address" />
+                <input type="text" placeholder="Consumption" class="input-field" id="consumption" />
+                <p class="error-submit"></p>
                 <button type="submit" class="btn">Add device</button>
+              </form>
+              <form id="edit-device" style="display: none;">
+                <h2>Edit Device</h2>
+                <input type="text" placeholder="Name" class="input-field" id="name" />
+                <input type="text" placeholder="Mac Address" class="input-field" id="mac-address" />
+                <input type="text" placeholder="IP Address" class="input-field" id="ip-address" />
+                <input type="text" placeholder="Consumption" class="input-field" id="consumption" />
+                <p class="error-submit"></p>
+                <button type="submit" class="btn">Save</button>
               </form>
             </div>
           </div>
@@ -128,8 +139,17 @@
 
     </div>
   </div>
+  <script>
+    const username = localStorage.getItem('username')
+    // document.querySelector('.header .user')
+    if (!username) {
+      window.location.href = 'http://127.0.0.1:5500/login.html'
+    }
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <script src="/js/main.js"></script>
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/plugins.js"></script>
 </body>
 
 </html>

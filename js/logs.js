@@ -281,8 +281,7 @@ const allDevices = [
     consumption: 1.5, // kWh
   },
 ];
-
-const rowsPerPage = 5;
+const rowsPerPage = 10;
 
 function paginate(arr, rowsPerPage, pageNumber) {
   --pageNumber;

@@ -63,7 +63,7 @@
                   <i class="fa-solid fa-circle-user"></i>
                   <span>Welcome Khánh</span>
                 </div>
-                <ul className="menu">
+                <ul class="menu">
                   <li>
                     <a href="#">
                       <i class="fa-solid fa-bars-progress"></i>
@@ -115,21 +115,25 @@
             <canvas id="donut-chart" class="donut-chart"></canvas>
 
             <div class="form-add">
-              <form id="add-device">
-                <input type="text" placeholder="Name" class="input-field" id="name" />
-                <input type="text" placeholder="Mac Address" class="input-field" id="mac-address" />
-                <input type="text" placeholder="IP Address" class="input-field" id="ip-address" />
-                <input type="text" placeholder="Consumption" class="input-field" id="consumption" />
-                <p class="error-submit"></p>
+              <form id="add-device" class="add-device">
+                <input type="text" placeholder="Device Name" class="input-field" id="name-add" />
+                <input type="text" placeholder="Mac Address" class="input-field" id="mac-address-add" />
+                <input type="text" placeholder="IP Address" class="input-field" id="ip-address-add" />
+                <input type="text" placeholder="Consumption" class="input-field" id="consumption-add" />
+                <p class="error-submit" id="error-submit-add"></p>
                 <button type="submit" class="btn">Add device</button>
               </form>
-              <form id="edit-device" style="display: none;">
+              <form id="edit-device" class="edit-device">
                 <h2>Edit Device</h2>
-                <input type="text" placeholder="Name" class="input-field" id="name" />
-                <input type="text" placeholder="Mac Address" class="input-field" id="mac-address" />
-                <input type="text" placeholder="IP Address" class="input-field" id="ip-address" />
-                <input type="text" placeholder="Consumption" class="input-field" id="consumption" />
-                <p class="error-submit"></p>
+                <label for="name-edit">Device Name:</label>
+                <input type="text" placeholder="Name" class="input-field read-only" id="name-edit" readonly />
+                <label for="name-edit">Mac Address:</label>
+                <input type="text" placeholder="Mac Address" class="input-field" id="mac-address-edit" />
+                <label for="name-edit">IP Address:</label>
+                <input type="text" placeholder="IP Address" class="input-field" id="ip-address-edit" />
+                <label for="name-edit">Consumption:</label>
+                <input type="text" placeholder="Consumption" class="input-field" id="consumption-edit" />
+                <p class="error-submit" id="error-submit-edit"></p>
                 <button type="submit" class="btn">Save</button>
               </form>
             </div>

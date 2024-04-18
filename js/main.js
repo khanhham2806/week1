@@ -55,8 +55,8 @@ function updateTableAndChart() {
       <td>${rowData.date}</td>
       <td>${rowData.consumption}</td>
       <td>
-        <span class="actions-device edit-device">Edit</span> |
-        <span class="actions-device delete-device" data-index="${index}"> Delete</span>
+        <span class="actions-device btn-edit">Edit</span> |
+        <span class="actions-device btn-delete"> Delete</span>
       </td>
   `;
     tbody.appendChild(row);
@@ -88,30 +88,87 @@ function updateTableAndChart() {
   myChart.data.datasets[0].backgroundColor = deviceColors;
   myChart.update();
 
-  [...document.querySelectorAll(".delete-device")].map((deleteDevice, index) => {
+  const formAdd = document.getElementById('add-device');
+  const formEdit = document.getElementById('edit-device');
+
+
+  [...document.querySelectorAll(".btn-delete")].map((deleteDevice, index) => {
     deleteDevice.addEventListener("click", function () {
       allDevices.splice(index, 1);
       localStorage.setItem('allDevices', JSON.stringify(allDevices))
+      formAdd.style.display = 'block';
+      formEdit.style.display = 'none';
       updateTableAndChart();
     });
   });
 
+  [...document.querySelectorAll(".btn-edit")].map((editDevice, index) => {
+    editDevice.addEventListener("click", function () {
+
+      formAdd.style.display = 'none';
+      formEdit.style.display = 'block';
+      document.getElementById('name-edit').value = allDevices[index].name
+      document.getElementById('mac-address-edit').value = allDevices[index].mac
+      document.getElementById('ip-address-edit').value = allDevices[index].ip
+      document.getElementById('consumption-edit').value = +allDevices[index].consumption
+
+
+      document.getElementById('edit-device').addEventListener('submit', (event) => {
+        event.preventDefault()
+        const name = document.getElementById('name-edit').value;
+        const mac = document.getElementById('mac-address-edit').value;
+        const ip = document.getElementById('ip-address-edit').value;
+        const createdDate = new Date();
+        console.log(createdDate.toISOString())
+        const consumption = parseInt(document.getElementById('consumption-edit').value);
+        if (consumption <= 0) {
+          document.querySelector("#error-submit-edit").innerHTML =
+            "Vui lòng nhập consumption > 0!";
+          setTimeout(() => {
+            document.querySelector("#error-submit-edit").innerHTML = "";
+          }, 1500);
+        }
+
+        else if (!consumption || !ip || !mac) {
+          document.querySelector("#error-submit-edit").innerHTML =
+            "Vui lòng nhập đầy đủ thông tin!";
+          setTimeout(() => {
+            document.querySelector("#error-submit-edit").innerHTML = "";
+          }, 1500);
+        }
+        else {
+          const newDevice = {
+            name: name,
+            mac: mac,
+            ip: ip,
+            consumption: consumption,
+            date: createdDate.toISOString().split('T')[0]
+          }
+          allDevices[index] = newDevice;
+          localStorage.setItem('allDevices', JSON.stringify(allDevices))
+          updateTableAndChart();
+          formAdd.style.display = 'block';
+          formEdit.style.display = 'none';
+        }
+      })
+    });
+  });
 }
 
 // Form submission event
-const deviceForm = document.getElementById('add-device');
-deviceForm.addEventListener('submit', function (event) {
+const addDevice = document.getElementById('add-device');
+addDevice.addEventListener('submit', function (event) {
   event.preventDefault();
-  const name = document.getElementById('name').value;
-  const mac = document.getElementById('mac-address').value;
-  const ip = document.getElementById('ip-address').value;
+  const name = document.getElementById('name-add').value;
+  const mac = document.getElementById('mac-address-add').value;
+  const ip = document.getElementById('ip-address-add').value;
   const createdDate = new Date();
-  const consumption = parseInt(document.getElementById('consumption').value);
+  const consumption = parseInt(document.getElementById('consumption-add').value);
   if ((!name || !consumption || !ip || !mac) || consumption <= 0) {
-    document.querySelector(".error-submit").innerHTML =
+    document.querySelector("#error-submit-add").innerHTML =
       "Vui lòng nhập đầy đủ thông tin!";
     setTimeout(() => {
-      document.querySelector(".error-submit").innerHTML = "";
+      document.querySelector("#error-submit-add").innerHTML = "";
     }, 1500);
   }
   else {
@@ -125,16 +182,14 @@ deviceForm.addEventListener('submit', function (event) {
       allDevices.push({ name: name, mac: mac, ip: ip, date: createdDate.toISOString().split('T')[0], consumption: consumption });
       deviceColors.push(getRandomColor())
     }
-    document.getElementById('name').value = ''
-    document.getElementById('mac-address').value = ''
-    document.getElementById('ip-address').value = ''
-    document.getElementById('consumption').value = ''
+    document.getElementById('name-add').value = ''
+    document.getElementById('mac-address-add').value = ''
+    document.getElementById('ip-address-add').value = ''
+    document.getElementById('consumption-add').value = ''
     localStorage.setItem('allDevices', JSON.stringify(allDevices))
     // Update table and chart
     updateTableAndChart();
   }
-
-
 });
 // Call table and chart setup
 updateTableAndChart();

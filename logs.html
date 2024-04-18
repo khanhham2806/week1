@@ -26,13 +26,13 @@
       <div class="menu-list">
         <ul className="menu">
           <li>
-            <a href="index.html">
+            <a href="/">
               <i class="fa-solid fa-bars-progress"></i>
               Dashboard
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="logs.html">
               <i class="fa-solid fa-arrow-rotate-left"></i>
               Logs
             </a>
@@ -48,6 +48,42 @@
     </aside>
     <div class="right-part">
       <div class="header">
+        <div class="mobile">
+          <div class="btn-hamburger">
+            &#9776;
+          </div>
+          <div class="mobile-menu" id="mobile-menu">
+            <div class="menu-list">
+              <div class="btn-close" id="btn-close">
+                <i class="fa-solid fa-x"></i>
+              </div>
+              <div class="user">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Welcome Khánh</span>
+              </div>
+              <ul className="menu">
+                <li>
+                  <a href="/index.html">
+                    <i class="fa-solid fa-bars-progress"></i>
+                    Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    Logs
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div class="user">
           <i class="fa-solid fa-circle-user"></i>
           <span>Welcome Khánh</span>
@@ -84,6 +120,8 @@
     </div>
   </div>
   <script src="/js/logs.js"></script>
+  <script src="/js/plugins.js"></script>
+
 </body>
 
 </html>
